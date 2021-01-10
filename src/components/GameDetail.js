@@ -7,37 +7,41 @@ import { useSelector } from "react-redux";
 
 const GameDetail = () => {
   // Data
-  const { screen, game } = useSelector((state) => state.detail);
+  const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
-    <CardShawow>
-      <Detail>
-        <Stats>
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating: {game.rating}</p>
-          </div>
-          <Info>
-            <h3>Platforms</h3>
-            <Platforms>
-              {console.log(game.platforms)}
-              {game.platforms.map((data) => (
-                <h3 key={data.platform.id}>{data.platform.name}</h3>
+    <>
+      {!isLoading && (
+        <CardShawow>
+          <Detail>
+            <Stats>
+              <div className="rating">
+                <h3>{game.name}</h3>
+                <p>Rating: {game.rating}</p>
+              </div>
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {console.log(game.platforms)}
+                  {game.platforms.map((data) => (
+                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <img src={game.background_image} alt={game.background_image} />
+            </Media>
+            <Description>{game.description_raw}</Description>
+            <div className="gallery">
+              {console.log(screen.results)}
+              {screen.results.map((screen) => (
+                <img key={screen.id} src={screen.image} alt={screen.image} />
               ))}
-            </Platforms>
-          </Info>
-        </Stats>
-        <Media>
-          <img src={game.background_image} alt={game.background_image} />
-        </Media>
-        <Description>{game.description_raw}</Description>
-        <div className="gallery">
-          {console.log(screen.results)}
-          {screen.results.map((screen) => (
-            <img key={screen.id} src={screen.image} alt={screen.image} />
-          ))}
-        </div>
-      </Detail>
-    </CardShawow>
+            </div>
+          </Detail>
+        </CardShawow>
+      )}
+    </>
   );
 };
 
