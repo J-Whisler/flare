@@ -87,10 +87,16 @@ const Detail = styled(motion.div)`
   background: white;
   position: absolute;
   left: 10%;
+  z-index: 5;
   color: black;
   z-index: 10;
+  cursor: default;
   img {
     width: 100%;
+    border-radius: 1rem;
+    /* border: 1px solid black; */
+    margin: 0.1rem auto;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 1);
   }
 `;
 
