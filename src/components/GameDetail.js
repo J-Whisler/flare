@@ -115,6 +115,7 @@ const CardShawow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -136,6 +137,7 @@ const Detail = styled(motion.div)`
   z-index: 5;
   color: black;
   z-index: 10;
+  margin: 0.2rem auto;
   cursor: default;
   img {
     width: 100%;
@@ -184,7 +186,7 @@ const Description = styled(motion.div)`
 const Gallery = styled(motion.div)`
   img {
     border-radius: 1rem;
-    margin: 0.5rem auto;
+    margin: 0.1rem auto;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
   }
 `;
