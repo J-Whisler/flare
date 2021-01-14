@@ -7,6 +7,13 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { smallImage } from "../util";
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+import logo from "../img/logo.svg";
+import nintendo from "../img/nintendo.svg";
+import xbox from "../img/xbox.svg";
 
 const GameDetail = ({ pathid }) => {
   const history = useHistory();
@@ -18,6 +25,24 @@ const GameDetail = ({ pathid }) => {
       history.push("/");
     }
   };
+
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation 4":
+        return playstation;
+      case "Xbox One":
+        return xbox;
+      case "Nintendo":
+        return nintendo;
+      case "iOS":
+        return apple;
+      case "PC":
+        return steam;
+      default:
+        return gamepad;
+    }
+  };
+
   // Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
@@ -33,9 +58,13 @@ const GameDetail = ({ pathid }) => {
               <Info>
                 <h3>Platforms</h3>
                 <Platforms>
-                  {console.log(game.platforms)}
+                  {/* {console.log(game.platforms)} */}
                   {game.platforms.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                    <img
+                      alt={data.platform.name}
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                    ></img>
                   ))}
                 </Platforms>
               </Info>
