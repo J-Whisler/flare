@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { smallImage } from "../util";
+// Img folder
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
 import apple from "../img/apple.svg";
@@ -14,6 +15,8 @@ import gamepad from "../img/gamepad.svg";
 import logo from "../img/logo.svg";
 import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathid }) => {
   const history = useHistory();
@@ -43,6 +46,19 @@ const GameDetail = ({ pathid }) => {
     }
   };
 
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt="star" key={i} src={starFull}></img>);
+      } else {
+        stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+      }
+    }
+    return stars;
+  };
+
   // Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
@@ -54,6 +70,7 @@ const GameDetail = ({ pathid }) => {
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathid}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
+                {getStars()}
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -77,12 +94,12 @@ const GameDetail = ({ pathid }) => {
               />
             </Media>
             <Description>{smallImage(game.description_raw, 1280)}</Description>
-            <div className="gallery">
+            <Gallery>
               {console.log(screen.results)}
               {screen.results.map((screen) => (
                 <img key={screen.id} src={screen.image} alt={screen.image} />
               ))}
-            </div>
+            </Gallery>
           </Detail>
         </CardShawow>
       )}
@@ -122,10 +139,6 @@ const Detail = styled(motion.div)`
   cursor: default;
   img {
     width: 100%;
-    border-radius: 1rem;
-    /* border: 1px solid black; */
-    margin: 0.1rem auto;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 1);
   }
 `;
 
@@ -154,6 +167,9 @@ const Media = styled(motion.div)`
   margin-top: 1rem;
   img {
     width: 100%;
+    border-radius: 1rem;
+    margin: 0.1rem auto;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 1);
   }
 `;
 
@@ -163,6 +179,14 @@ const Description = styled(motion.div)`
   word-spacing: 0.1rem;
   font-family: "Montserrat Alternates", sans-serif;
   margin: 1.5rem auto;
+`;
+
+const Gallery = styled(motion.div)`
+  img {
+    border-radius: 1rem;
+    margin: 0.5rem auto;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export default GameDetail;
