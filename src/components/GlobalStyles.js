@@ -47,6 +47,9 @@ a {
 img {
     display: block;
 }
-`;
+input {
+font-weight: bold;
+font-family: "Monterrat Alternates", sans-serif;
+}`;
 
 export default GlobalStyles;
