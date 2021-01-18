@@ -6,6 +6,7 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 import { popUp } from "../animations";
+
 const Game = ({ name, released, image, id }) => {
   const stringPathId = id.toString;
   const dispatch = useDispatch();
