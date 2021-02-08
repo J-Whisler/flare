@@ -1,1 +1,1 @@
-This is an App built with react that allows you to get all the latest information about popular, upcoming and 
+This is an App built with react that allows you to get all the latest information about new, popular and upcoming video games.  It also allows you to utilize a search bar to look up any game you want and returns you its current rating, the platforms that it is available on and more.  This application was made using the rawg.io API (https://rawg.io/).  
